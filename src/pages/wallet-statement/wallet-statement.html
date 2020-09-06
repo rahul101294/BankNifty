@@ -1,0 +1,61 @@
+<!--
+  Generated template for the WalletStatementPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <span class="availableBal">Available Balance</span>
+      <br>
+      <span class="balance">{{ currency }} <span>{{totalAvailableAmount}}</span></span>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="outer">
+    <ion-list *ngIf="walletHistory" class="section">
+      
+      <ion-item *ngFor="let item of walletHistory">
+        <ion-card>
+          <div class="image_block">
+            <img *ngIf="item.amount > 0" src="assets/images/up.png" class="graph"  slot="start"/>
+            <img *ngIf="item.amount < 0" src="assets/imgs/ic_down.png" class="graph"  slot="start"/>
+          </div>
+          <div class="content_block">
+            <div class="block_1">
+                <div>
+                  <span *ngIf="item.product_type != '' && item.product_type != null && item.product_type == 'ADD-ONS'" class="single">{{item.product_type}}</span>
+                  <span *ngIf="item.product_type != '' && item.product_type != null && item.product_type == 'PLAN'" class="paid_tips">{{item.product_type}}</span>
+                  <p *ngIf="item.status != '' && item.status != null && item.status == 'Successful'" class="success">{{item.status}}</p>
+                  <p *ngIf="item.status != '' && item.status != null && item.status == 'Failed'" class="fail">{{item.status}}</p>
+                  <p>
+                    {{ item.title }}
+                    <span *ngIf="item.amount > 0" class="plus">{{ currency }} +{{ item.amount }}</span>
+                    <span *ngIf="item.amount < 0" class="mins">{{ currency }} {{ item.amount }}</span>
+                  </p>
+                </div>
+            </div>
+            
+            <div class="block_3">              
+                <p class="modified date_style"><ion-icon name="calendar"></ion-icon> {{ item.created }}</p>
+                <p class="closing_bal" *ngIf="item.transaction_id != null && item.transaction_id != ''">Tx No.: {{ item.transaction_id }}</p>                
+                <p class="closing_bal" *ngIf="item.closing_bal != null && item.closing_bal != ''">Closing Balance: {{ currency }} {{ item.closing_bal }}</p>
+            </div>
+
+          </div>
+        </ion-card>
+      </ion-item>
+
+    </ion-list>
+  </div>
+
+  <ion-infinite-scroll *ngIf="!noMorePage" (ionInfinite)="fetchPaymentHistory($event)" distance="1%">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

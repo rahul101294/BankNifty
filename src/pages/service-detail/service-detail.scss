@@ -1,0 +1,139 @@
+page-service-detail {
+    .scroll-content {
+        padding: 0 !important;
+    }
+    ion-footer {
+        background-color: #FF550A;
+        .toolbar-title {
+            text-align: center;
+            color: #ffffff;
+        }
+	}    
+	
+	.btnDetail {
+		height: 35px;
+		font-weight: normal;
+		text-transform: none;
+	}
+
+    .service_slide {
+		.slide-zoom{
+			height: 200px;
+			img {
+				width: 600px;
+				height: 400px;
+			}
+		}
+    }
+    
+    .leftlabel {
+		position: absolute;
+		top: 0;
+		z-index: 99;
+		left: 0;
+		background: #0036ff;
+		color: #ffffff;
+		padding: 2px 4px;
+    	font-size: 14px;
+	}
+	.rightlabel {
+		position: absolute;
+		top: 0;
+		z-index: 99;
+		right: 0;
+		background: #FF550A;
+		color: #ffffff;
+		padding: 2px 3px;
+    	font-size: 11px;
+    }
+    
+    ion-card{
+        display: flex;
+        flex-direction: column;
+        margin: 0 !important;
+        width: 100% !important;
+    }
+
+    .service_detail_section {
+		padding: 8px;
+		width: 100%;
+		.service_title {
+			float: left;
+    		width: 80%;
+		}
+		.service_price.end {
+			font-size: 16px;
+			font-weight: 600;
+		}
+	}
+
+	.totalPurchased {
+		position: absolute;
+		top: 171px;
+		z-index: 99;
+		right: 0;
+		background: rgba(31, 35, 31, 0.32);
+		color: #ffff00b8;
+		padding: 3px 10px;
+		font-size: 15px;
+		font-weight: 500;
+		ion-icon {
+			margin-right: 8px;
+			color: #ffffff;
+		}
+		span {
+			color: #ffffff;
+			font-weight: 600;
+		}
+	}
+
+	.service_block_main {
+		display: flex;
+		justify-content: space-between;
+		padding: 4px;
+		.block_1_title {
+			font-size: 14px;
+			font-weight: normal;
+			white-space: initial;
+			padding-right: 10px;
+		}
+		.block_1_price {
+			font-size: 14px;
+    		font-weight: 600;
+		}
+	}
+
+	.slider_outer {
+		position: relative;
+		.rating_price_outer {
+			position: absolute;
+			bottom: 0;
+			padding: 4px 0;
+			color: #ffffff;
+			display: flex;
+			justify-content: space-between;
+			z-index: 999999;
+			background-color:rgba(0,0,0,0.5);
+			width: 100%;
+			.rating_block {
+				display: flex;
+				align-items: center;
+				padding: 0 4px;
+				.rating_image {
+					max-width: 60px;
+					padding: 0 4px;
+				}
+			}
+			.cart_purchased {
+				padding: 0 4px;
+				.totalPurchased_new {
+					color: #ffffff;
+					.sold {
+						color: #FF550A;
+						font-weight: 600;
+					}
+				}
+			}
+		}
+	}
+}

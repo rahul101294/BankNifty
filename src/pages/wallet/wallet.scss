@@ -1,0 +1,104 @@
+page-wallet {
+    .error {
+        color: #ff0000;
+        padding-left: 16px;
+        padding-top: 10px;
+    }
+
+    .btn_outer {
+        width: 90%;
+        margin: 0 auto;
+    }   
+
+    .add_money {
+        padding-left: 13px;
+        font-size: 16px;
+        font-weight: 500;
+        margin-bottom: 0;
+    }    
+
+    .date {
+        float: right;
+        opacity: 0.7;
+    }
+
+    .success {
+        background: #FF550A;
+        color: #fff;
+        padding: 3px;
+        float: right;
+    }
+
+    .failed {
+        background: #ff0000;
+        color: #fff;
+        padding: 3px;
+        float: right;
+    }
+
+    .outer {
+		overflow-y: auto;
+		.section {
+			height: 300px;
+		}
+    }
+    
+    .wallet_sec {
+        width: 100%;
+        height: auto;
+        .wallet_icon {
+            width: 15%;
+            float: left;
+            margin-right: 20px;
+        }
+        .wallet_amt {
+            width: 80%;
+            padding: 0 0 13px 0;
+            .wallet {
+                text-align: left;
+                font-size: 22px;
+                font-weight: bold;
+                color: #000000;
+            }
+
+            .balance {
+                text-align: left;
+                font-size: 20px;
+                
+                span {
+                    color: #55d533;
+                    font-weight: 600;
+                    font-size: 30px;
+                }
+            }
+        }
+    }
+
+    .button-inner{
+        text-transform: capitalize;
+    }
+
+    .lastTrans {
+        font-size: 12px;
+        float: right;
+        margin-right: -12px;
+    }
+
+    form {
+        margin-top: 50px;
+
+        ion-item {
+            .input-wrapper {
+                .label {
+                    margin-top: 0;
+                }
+            
+                .input-has-value {
+                    .label {
+                        margin-top: 10px;
+                    }
+                }
+            }  
+        }
+    } 
+}

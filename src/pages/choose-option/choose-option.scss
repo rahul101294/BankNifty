@@ -1,0 +1,53 @@
+page-choose-option {
+    .content {
+        background-color: #FFF9D5;
+		padding: 0px 0px !important;
+        background: #fef9cf url('../assets/imgs/bg_graphics.png') no-repeat bottom center;
+		background-size: 100% auto;
+        .background_img {
+            background-image: url('../assets/imgs/bg_graphics.png');
+        }
+		
+		.scroll-content {
+			padding: 0px 0px !important;
+		}
+        
+        .logo_sec {
+            max-width: 150px;
+            max-height: 150px;
+            margin: 30% auto;
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        .choose_sec {
+            width: 100%;
+            position: fixed;
+            top: 50%;
+            left: 0px;
+			text-align: center;
+			
+			button {
+				display: inline-block;
+				min-width: 124px;
+				padding: 14px 10px;
+				height: auto;
+				box-shadow: none;
+				border: solid 0px;
+			}
+			
+            .login_btn {
+                background-color: #FF550A;
+                border: 1px solid #ff550a;
+            }
+			
+            .register_btn {
+                background-color: #FEFEFF;
+                border: 1px solid #000;
+                color: #000;
+            }
+        }
+    }
+}

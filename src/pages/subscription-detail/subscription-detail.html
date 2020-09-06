@@ -1,0 +1,52 @@
+<!--
+  Generated template for the SubscriptionDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+        <div class="home_title_logo">
+          <img src="assets/imgs/logo.png" width="45px" style="display:inline-block" height="45px" />
+        </div>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <p>Subscription Detail</p>
+    <div *ngIf="data" class="block_detail">
+      <div class="cat_name">
+          <h2>Category: {{ data.cat_name }}</h2>
+      </div>
+
+      <div class="filter_price_block">
+        <div class="filter_block">
+          <ion-item>
+            <ion-label>Choose Term</ion-label>
+            <ion-select (ionChange)="changePlan(plan)" [(ngModel)]="plan" name="plan">
+              <ion-option *ngIf="data.price_1day" value="price_1day">1 Day</ion-option>
+              <ion-option *ngIf="data.price_7day" value="price_7day">7 Days</ion-option>
+              <ion-option *ngIf="data.price_15day" value="price_15day">15 Days</ion-option>
+              <ion-option *ngIf="data.price_1month" value="price_1month">1 Month</ion-option>
+              <ion-option *ngIf="data.price_3month" value="price_3month">3 Month</ion-option>
+              <ion-option *ngIf="data.price_6month" value="price_6month">6 Months</ion-option>
+              <ion-option *ngIf="data.price_1year" value="price_1year">1 Year</ion-option>
+              <ion-option *ngIf="data.price_onetime" value="price_onetime">One Time</ion-option>
+            </ion-select>
+          </ion-item>
+        </div>
+        <div class="price_block">
+          <span>Price</span>
+          <h2>{{ currency }}{{ price }}</h2>
+        </div>
+      </div>
+
+      <div class="description">
+          <div [innerHTML]="toHTML(description)"></div>
+      </div>
+
+      <button ion-button block type="button" (click)="subscribe(data.plan_id, plan)">Subscribe</button>
+    </div>
+</ion-content>

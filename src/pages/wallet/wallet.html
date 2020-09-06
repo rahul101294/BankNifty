@@ -1,0 +1,49 @@
+<!--
+  Generated template for the WalletPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <div class="home_title_logo">
+        <img src="assets/imgs/logo.png" width="45px" style="display:inline-block" height="45px" />
+      </div>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card> 
+    <ion-item>
+      <div class="wallet_sec" (click)="goToWalletStatement()">
+        <div class="wallet_icon">
+          <img src="assets/images/wallet.png" class="graph"  slot="start"/>
+        </div>
+        <div class="wallet_amt">
+          <p class="wallet">HNI CALLS Wallet</p>
+          <p class="balance">{{ currency }} <span>{{totalAvailableAmount}}</span></p>
+          <span *ngIf="lastTransaction != ''" class="lastTrans">Last transaction on {{ lastTransaction }} </span>
+        </div>
+      </div>  
+    </ion-item>  
+  </ion-card>
+        
+  <form (submit)="doAddAmount()" [formGroup]="form">      
+    <p class="add_money">Add Money to HNI CALLS Wallet</p>
+    <ion-item>
+        <ion-label floating>{{ currency }}  Amount</ion-label>
+        <ion-input [(ngModel)]="data.amount" name="amount" formControlName="amount" type="number"></ion-input>
+    </ion-item>
+    <div class="error" *ngIf="form.get('amount').hasError('required') && form.get('amount').touched">
+        This is required
+    </div>
+    <div class="btn_outer">
+        <button ion-button block type="submit" margin-top [disabled]="!form.valid">Proceed</button>
+    </div>
+  </form>
+</ion-content>

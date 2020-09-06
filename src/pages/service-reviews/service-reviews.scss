@@ -1,0 +1,43 @@
+page-service-reviews {
+    .review_write {
+        text-align: center;
+        margin: 0;
+        span {
+            color: #FF550A;
+            text-decoration: underline;
+        }
+    }
+
+    ion-card {
+        padding: 10px;
+        margin: 0 !important;
+        width: 100% !important;
+        margin-top: 15px !important;
+    }
+
+    .scroll-content {
+        padding: 10px !important;
+    }
+
+    .date {
+        float: right;
+        opacity: 0.8;
+    }
+
+    .rating_sec {
+        width: 100%;
+        .rating_user {
+            width: 75%;
+            float: left;
+        }
+        .rating_block {
+            width: 25%;
+            float: left;
+        }
+    }
+
+    .content {
+        width: 100%;
+        float: right;
+    }
+}

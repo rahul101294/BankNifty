@@ -1,0 +1,80 @@
+<!--
+  Generated template for the MyTipsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <div class="home_title_logo">
+        <img src="assets/imgs/logo.png" width="45px" style="display:inline-block" height="45px" />
+      </div>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <p>My Tips</p>
+
+  <ion-list *ngIf="data && data != ''">
+    <ion-item *ngFor="let item of data">
+      <div class="purdiv">Subscribed</div>
+      <ion-card>        
+        <div class="image_block">
+          <img src="assets/images/graph.png" class="graph"  slot="start"/>
+        </div>
+        <div class="content_block">
+
+          <div class="block_1" *ngIf="item.tip_type == 2">
+            <div>
+              <span></span>
+              <p>{{ item.plan_name }} <span>{{ item.cat_name }}</span> </p>
+            </div>
+            <p>                
+              <span>
+                <img *ngIf="item.buy_sell == 'Buy'" src="assets/images/up.png" class="up_img"/>
+                <img *ngIf="item.buy_sell == 'Sell'" src="assets/imgs/ic_down.png" class="up_img"/>
+                {{ item.tip_title }}
+              </span>
+              <!--<span>+{{ item.tip_percentage_growth }}</span>-->
+            </p>
+        </div>
+
+          <div class="block_2">
+            <div class="block_2_1">
+              <h3 *ngIf="item.buy_sell == 'Buy'">BUY @ <span>{{ item.buy }}</span></h3>
+              <h3 *ngIf="item.buy_sell == 'Sell'">SELL @ <span>{{ item.buy }}</span></h3>
+              <h3>STOP @ <span>{{ item.stop }}</span></h3>
+            </div>
+            <div class="block_2_2">
+              <h3 *ngIf="item.tp1 != '' && item.tp1 > 0">TP 1 <span>{{ item.tp1 }}</span></h3>
+              <h3 *ngIf="item.tp2 != '' && item.tp2 > 0">TP 2 <span>{{ item.tp2 }}</span></h3>
+              <h3 *ngIf="item.tp3 != '' && item.tp3 > 0">TP 3 <span>{{ item.tp3 }}</span></h3>
+              <h3 *ngIf="item.tp4 != '' && item.tp4 > 0">TP 4 <span>{{ item.tp4 }}</span></h3>
+            </div>
+          </div>
+          <div>
+            <p class="date_style">Posted on: {{ item.modified }}</p>
+          </div>
+          <div class="block_3">
+              <button ion-button color="primary" size="small" (click)="goToTipDetail(item.tip_id)">View</button>
+          </div>
+          
+        </div>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+  
+  <p *ngIf="data == ''" class="notFound">You are not subscribed any tips yet!</p>
+  <div *ngIf="data == ''" class="subscribeNow">
+    <button ion-button color="secondary" (click)="goToSubscriptionPlan()">Subscribe Now</button>
+  </div>
+
+</ion-content>

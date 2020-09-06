@@ -1,0 +1,61 @@
+<!--
+  Generated template for the ServiceCartPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <div class="home_title_logo">
+        <img src="assets/imgs/logo.png" width="45px" style="display:inline-block" height="45px" />
+      </div>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <p>Buy Services</p>
+  <div *ngIf="detail">
+    <div class="block_cart">
+      <div class="detail">
+        <div class="cat_name">
+            <h2>{{ detail.label }}</h2>
+        </div>
+        <div class="price">
+            <h2>{{ currency }} {{ detail.price }}</h2>
+        </div>
+      </div>
+      <div>
+        <span>{{ detail.title }}</span>
+      </div>
+    </div>
+
+    <div>
+      <h2>Total: <span>{{ detail.price }}</span></h2>
+    </div>
+
+    <ion-list radio-group [(ngModel)]="paymentType">
+      <!--<ion-item>
+        <ion-label>Cash</ion-label>
+        <ion-radio slot="start" value="1" name="paymentType" color="primary" (click)="checkPayment(1)"></ion-radio>
+      </ion-item>-->
+      <!--<ion-item>
+        <ion-label>Card</ion-label>
+        <ion-radio slot="start" value="2" name="paymentType" color="primary" (click)="checkPayment(2)"></ion-radio>
+      </ion-item>-->
+
+      <ion-item>
+        <ion-label>HNI CALLS Wallet {{currency}} {{totalAvailableAmount}}</ion-label>
+        <ion-radio slot="start" value="3" name="paymentType" color="primary" (click)="checkPayment(3)"></ion-radio>
+      </ion-item>
+    </ion-list>
+    <p *ngIf="totalAvailableAmount < detail.price" class="insufficient_amount">Insufficient balance in wallet.</p>
+    <button *ngIf="totalAvailableAmount >= detail.price" ion-button block type="button" [disabled]="!payment_type" (click)="pay()">Proceed To Pay</button>
+  </div>
+
+  <button ion-button block (click)="goToWallet()" class="btnWallet">Add amount in wallet</button>
+</ion-content>

@@ -1,0 +1,231 @@
+page-tip-detail {
+	.scroll-content {
+		padding: 0px 0px !important;
+	}
+	.scroll-content > p {
+		font-size: 21px;
+		padding: 6px 10px;
+		background: #e3e3e3;
+		text-align: left;
+		margin: 10px 0px;
+	}
+	.item {
+		padding: 0px 0px !important;
+	}
+	.item-inner {
+		padding: 0px 0px !important;
+		border-bottom: solid 0px !important;
+
+		.label {
+			margin: 0px 0px !important;
+			padding: 10px 10px;
+
+			.card {
+				margin: 14px 0px !important;
+				display: table;
+				width: 100%;
+				position: relative;
+				overflow: visible;
+
+				.image_block {
+					display: table-cell;
+					width: 25%;
+					padding: 10px 10px;
+					vertical-align: top;
+				}
+
+				.content_block {
+					display: table-cell;
+					width: 100%;
+					padding: 20px 10px;
+					white-space: normal;
+
+					.up_img {
+						float: left;
+						margin-right: 2px;
+					}
+					.block_1 > div > p.button {
+						position: absolute;
+						right: 0px;
+						top: -21px;
+						height: auto;
+						box-shadow: none;
+						background: #48be00;
+						padding: 2px 10px;
+					}
+					.block_1 > div > p.button span {
+					color: #ffffff;
+					}
+					.block_1 {
+						margin-bottom: 6px;
+						padding-bottom: 6px;
+						border-bottom: solid 1px #dedede;
+						div {
+							p {
+								color: #ff550a;
+
+								span {
+									color: #1166b9;
+									max-width: 75%;
+								}
+								span:nth-child(3n) {
+									color: #55d533;
+									float: right;
+									margin-top: -16px;
+								}
+							}
+						}
+					}
+					.block_1 > p:last-child {
+						margin: 10px 0px;
+
+						span {
+							display: inline-block;
+						}
+						span:first-child {
+							margin-right: 10px;
+							font-weight: bold;
+						}
+					}
+
+					.block_2 {
+						margin-bottom: 6px;
+						padding-bottom: 6px;
+						border-bottom: solid 1px #dedede;
+						.block_2_1 {
+							white-space: normal;
+
+							h3 {
+								display: inline-block;
+								width: 48%;
+								margin: 0px 0px;
+								padding: 3px 0px;
+								font-weight: bold;
+								span {
+									font-weight: normal;
+								}
+								span:before {
+									content: ':';
+									display: inline-block;
+									margin: 0px 4px;
+								}
+							}
+						}
+						.block_2_2 {
+							white-space: normal;
+							h3 {
+								display: inline-block;
+								width: 48%;
+								margin: 0px 0px;
+								padding: 3px 0px;
+								font-weight: bold;
+								span {
+									font-weight: normal;
+								}
+								span:before {
+									content: ':';
+									display: inline-block;
+									margin: 0px 4px;
+								}
+							}
+						}
+					}
+
+					.block_3 {
+						button {
+							display: inline-block;
+							min-width: 124px;
+							padding: 14px 10px;
+							height: auto;
+							box-shadow: none;
+							border: solid 0px;
+						}
+						.button-default {
+						}
+					}
+
+					.icon {
+						color: #1166b9;
+						float: right;
+						margin-right: 10px;
+						margin-top: 20px;
+					}
+				}
+			}
+		}
+	}
+	.scroll-content > .thred_outer .thread_section > .card {
+		border: solid 1px #cccccc;
+		box-shadow: none;
+		padding: 20px 10px 10px 10px;
+		background: #ededed;
+		-webkit-border-radius: 6px;
+		-moz-border-radius: 6px;
+		border-radius: 6px;
+	}
+	.scroll-content > .thred_outer .thread_section > .card p {
+		font-size: 13px;
+		text-align: right;
+		opacity: 0.7;
+		font-style: normal;
+	}
+
+	.content_block {
+		.up_img {
+			width: 20px;
+		}
+	}
+
+	.thred_outer {
+		overflow-y: auto;
+		.thread_section {
+			height: 300px;
+		}
+	}
+
+	.single {
+		background-color: #0036ff;
+		float: right;
+		color: #fff;
+		padding: 3px 14px;
+		font-size: 12px;
+		position: absolute;
+		top: 0px;
+		right: 0px;
+		text-transform: uppercase;
+	}
+
+	.tip_price {
+		position: relative;
+		top: 100px;
+		font-size: 16px;
+		font-weight: 500;
+		float: left;
+		padding-left: 4px;
+	}
+
+	.purdiv {
+		position: absolute;
+		right: 1px;
+		top: -12px;
+		z-index: 99;
+		background-color: #48be00;
+		color: #ffffff;
+		padding: 2px 6px;
+		text-transform: uppercase;
+	}
+
+	.purdivNew {
+		top: -21px;
+		text-transform: uppercase;
+	}
+
+	.exp {
+		background-color: #E91E63;
+	}
+
+	.date_style {
+		font-style: normal;
+		opacity: 0.7;
+	}
+}

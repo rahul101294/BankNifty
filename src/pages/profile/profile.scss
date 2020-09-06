@@ -1,0 +1,9 @@
+page-profile {
+    ion-avatar {
+        float: left;
+    }
+
+    .item:last-child {
+        border-bottom: none !important;
+    }
+}

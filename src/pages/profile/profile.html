@@ -1,0 +1,57 @@
+<!--
+  Generated template for the ProfilePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>
+        <div class="home_title_logo">
+          <img src="assets/imgs/logo.png" width="45px" style="display:inline-block" height="45px" />
+        </div>
+      </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <div class="customer_profile">
+        <ion-list *ngIf="data">
+            <h2>Profile</h2>
+            <ion-item *ngIf="data.full_name">
+                <ion-avatar slot="start">
+                    <ion-icon name="person"></ion-icon>
+                </ion-avatar>
+                <h2>{{ data.full_name }}</h2>
+            </ion-item>
+
+            <ion-item *ngIf="data.email">
+                <ion-avatar slot="start">
+                    <ion-icon name="mail"></ion-icon>
+                </ion-avatar>
+                <h2>{{ data.email }}</h2>
+            </ion-item>
+
+            <ion-item *ngIf="data.mobile">
+                <ion-avatar slot="start">
+                    <ion-icon name="phone-portrait"></ion-icon>
+                </ion-avatar>
+                <h2>{{ data.mobile }}</h2>
+            </ion-item>
+
+            <ion-item *ngIf="data.investment_capital">
+                <ion-avatar slot="start">
+                    <ion-icon name="information-circle"></ion-icon>
+                </ion-avatar>
+                <h2>{{ data.investment_capital }}</h2>
+            </ion-item>
+            
+        </ion-list>
+    </div>
+    <!--<div class="btn_outer" *ngIf="data">
+        <button ion-button block type="button" (click)="editProfile()">Edit Profile</button>
+    </div>-->
+</ion-content>

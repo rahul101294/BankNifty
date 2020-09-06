@@ -1,0 +1,42 @@
+<!--
+  Generated template for the ServiceReviewWritePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-content padding>
+  <ion-icon name="close" color="primary" class="close-icon" (click)="close()"></ion-icon>
+
+  <div class="box">
+      <ion-label>Wtite Review:</ion-label>
+      <form (submit)="doWriteReview()" [formGroup]="form">   
+        <ion-item>
+           
+          <ionic3-star-rating #rating 
+              activeIcon = "ios-star"
+              defaultIcon = "ios-star-outline"
+              activeColor = "#d1301a"
+              defaultColor = "#aaaaaa"
+              readonly = "false"
+              fontSize = "32px"
+              (ratingChanged)="logRatingChange($event)"
+              [(ngModel)]="data.starRating"
+              formControlName="starRating">
+          </ionic3-star-rating>  
+        </ion-item>
+        <div class="error" *ngIf="form.get('starRating').hasError('required') && form.get('starRating').touched">
+          This is required
+        </div>    
+        <ion-item>
+          <ion-label floating>Type Comment</ion-label>
+          <ion-textarea [(ngModel)]="data.content" formControlName="content"></ion-textarea>                
+        </ion-item>
+        <div class="error" *ngIf="form.get('content').hasError('required') && form.get('content').touched">
+          This is required
+        </div>
+
+        <button ion-button type="submit" class="submit_btn" [disabled]="!form.valid">Submit</button>
+    
+      </form>
+  </div>
+</ion-content>

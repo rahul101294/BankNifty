@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "552245997209",
+    "firebase_url": "https://hni-calls.firebaseio.com",
+    "project_id": "hni-calls",
+    "storage_bucket": "hni-calls.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:552245997209:android:0b3f9d0f1293ba54891208",
+        "android_client_info": {
+          "package_name": "com.hni.calls"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "552245997209-t5b8gqaarovpcjjge42m3arqpg8jnec6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHY1koL5l4ZFKjUbDHoajEOXdVPJ36vok"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "552245997209-t5b8gqaarovpcjjge42m3arqpg8jnec6.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "552245997209-sq8g8vevtn1equ0h3jqqaai7p4a6ek5o.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.hni.calls"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

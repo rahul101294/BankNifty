@@ -1,0 +1,92 @@
+page-subscription-detail {
+	.scroll-content {
+		padding: 0px 0px !important;
+	}
+	.scroll-content > p {
+		font-size: 21px;
+		padding: 6px 10px;
+		background: #e3e3e3;
+		text-align: left;
+		margin: 10px 0px;
+	}
+	.block_detail {
+		padding: 10px 10px;
+	}
+	.filter_price_block {
+		display: table;
+		width: 100%;
+	}
+	.filter_block {
+		width: 60%;
+		display: table-cell;
+		vertical-align: top;
+	}
+	.price_block {
+		width: 40%;
+		display: table-cell;
+		vertical-align: bottom;
+		padding: 0px 0px;
+	}
+	.price_block h2 {
+		margin: 6px 0px;
+	}
+	.filter_block > .item {
+		padding-left: 0px;
+		margin-bottom: 0px;
+		border: solid 0px;
+	}
+	.filter_block > .item .item-inner {
+		border: solid 0px;
+		padding: 0px 0px;
+	}
+	.filter_block > .item .label, .filter_block > .item .input-wrapper {
+		margin: 0px 0px;
+		display: block;
+	}
+	.filter_block > .item ion-select {
+		margin: 4px 0px 0px 0px;
+		display: block;
+		width: 86%;
+		max-width: 100%;
+		padding: 10px 6px;
+		border: solid 1px #dedede;
+		position: relative;
+	}
+	.filter_block > .item .select .select-icon {
+		position: absolute;
+		right: 12px;
+		top: 10px;
+	}
+	.description ul {
+		list-style: none;
+		padding: 8px 8px;
+		margin: 0px 0px;
+		border-top: solid 1px #dedede;
+	}
+	.description ul li {
+		display: block;
+		position: relative;
+		padding: 10px 6px;
+		border-bottom: solid 1px #dedede;
+	}
+	.description ul li:after {
+		position: absolute;
+		content: ' ';
+        background: #f0f0f0 url(../assets/imgs/ic_features.png) no-repeat 3px 3px;
+		background-size: 30px 30px;
+		height: 36px;
+		width: 36px;
+		right: 0px;
+		bottom: 0px;
+	}
+		
+	.button {
+		display: inline-block;
+		padding: 6px 12px;
+		box-shadow: none;
+		border: solid 0px;
+		margin: 0px 20%;
+		height: 42px;
+		width: 60%;
+	}
+}

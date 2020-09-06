@@ -1,0 +1,61 @@
+page-list {
+
+    .content_block {
+		float: right;
+		width: 73%;
+    }
+
+    .content_block {
+        .up_img {
+            width: 20px;
+        }
+    }
+
+    .content_block {
+        .block_1 {
+			img {
+				float: left;
+				margin-right: 10px;
+				margin-bottom: 10px;
+			}
+        }
+    }
+
+    .content_block {
+        .block_2 {
+			.block_2_1 {
+				h3 {
+					display: inline-block;
+					width: 48%;
+				}
+			}
+			.block_2_2 {
+				h3 {
+					display: inline-block;
+					width: 48%;
+				}
+			}
+        }
+    }
+
+    .content_block {
+        .block_2 {
+			float: left;
+			width: 100%;
+        }
+    }
+
+    .content_block {
+        .block_3 {
+			float: left;
+			width: 100%;
+        }
+    }
+	
+	.item {
+		.card {
+			background: #ededed;
+			padding: 10px 10px;
+		}
+	}
+}

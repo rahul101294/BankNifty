@@ -1,0 +1,97 @@
+page-cart {
+	.scroll-content {
+		padding: 0px 0px !important;
+	}
+	.scroll-content > p {
+		font-size: 21px;
+		padding: 6px 10px;
+		background: #e3e3e3;
+		text-align: left;
+		margin: 10px 0px;
+	}
+	.block_cart {
+		width: 100%;
+		margin-bottom: 20px;
+	}
+	
+	.scroll-content {
+		div {
+			div:nth-child(2n) {
+				h2 {
+					font-size: 18px;
+					text-align: right;
+				}
+			}
+		}
+	}
+	
+	.block_cart {
+		padding: 10px 10px;
+		.detail {
+			float: left;
+			width: 100%;
+			padding: 6px 0px;
+			border-bottom: solid 1px #dedede;
+			margin-bottom: 6px;
+			
+			h2 {
+				margin: 0px 0px;
+			}
+		}
+		.detail {
+			.cat_name {
+				float: left;
+				width: 70%;
+			}
+			.cat_name {
+				h2 {
+					font-size: 18px;
+				}
+			}
+			.price {
+				float: right;
+				width: 28%;
+			}
+			.price {
+				h2 {
+					font-size: 18px;
+				}
+			}
+		}
+	}
+	.block_cart > div:last-child span {
+		display: inline-block;
+		margin-right: 14px;
+	}
+	.scroll-content > div > div:nth-child(2n) {
+		border-top: solid 1px #dedede;
+		border-bottom: solid 1px #dedede;
+		margin: 0px 10px;
+		padding: 10px 10px;
+	}
+	.scroll-content > div > div:nth-child(2n) h2 {
+		margin: 0px 0px;
+	}
+	.item.item-md .checkbox-md {
+		margin-right: 6px;
+	}
+	.button {
+		display: inline-block;
+		padding: 6px 12px;
+		box-shadow: none;
+		border: solid 0px;
+		margin: 0px 20%;
+		height: 42px;
+		width: 60%;
+	}
+
+	.insufficient_amount {
+		text-align: center;
+		color: #ff0000;
+		font-size: 15px;
+	}
+
+	.btnWallet {
+		margin-top: 25px
+	}
+}

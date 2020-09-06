@@ -1,0 +1,87 @@
+<!--
+  Generated template for the TipDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <div class="home_title_logo">
+        <img src="assets/imgs/logo.png" width="45px" style="display:inline-block" height="45px" />
+      </div>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item *ngIf="item">
+    <ion-card>
+      <div class="purdiv" *ngIf="item.tip_type == 2">Subscribed</div>
+      <div class="purdiv purdivNew exp" *ngIf="item.tip_type == 1 && item.tip_close == 1">Expired</div>
+      <div class="purdiv purdivNew" *ngIf="item.tip_type == 1 && item.tip_close == 0">Purchased</div>
+      <div class="image_block">
+        <img src="assets/images/graph.png" class="graph"  slot="start"/>
+        <span *ngIf="item.tip_type == 1" class="tip_price">{{currency}} {{item.tip_price}}</span>
+      </div>
+      <div class="content_block">
+        <div class="block_1">
+            <div *ngIf="item.tip_type == 1">
+              <span class="single">Add-ons</span>
+              <p>
+                {{ item.tip_keyword }} <br> <span>{{ item.tip_tags }}</span>
+                <ion-icon (click)="share(item)" name="share-alt"></ion-icon>
+              </p>
+            </div>
+
+            <div *ngIf="item.tip_type == 2">
+              <span></span>
+              <p>
+                {{ item.plan_name }} <br> <span>{{ item.cat_names }}</span> <!--<span>+{{ item.percentage_growth }}%</span>-->
+                <ion-icon (click)="share(item)" name="share-alt"></ion-icon>
+              </p>
+            </div>
+
+            <p>              
+              <span>
+                <img *ngIf="item.buy_sell == 'Buy'" src="assets/images/up.png" class="up_img"/>
+                <img *ngIf="item.buy_sell == 'Sell'" src="assets/imgs/ic_down.png" class="up_img"/>
+                {{ item.tip_title }}
+              </span>
+              <span *ngIf="item.tip_type == 2">{{ item.keyword }}</span>
+            </p>
+        </div>
+        <div class="block_2">
+          <div class="block_2_1">
+            <h3 *ngIf="item.buy_sell == 'Buy'">BUY @ <span>{{ item.tip_buy }}</span></h3>
+            <h3 *ngIf="item.buy_sell == 'Sell'">SELL @ <span>{{ item.tip_buy }}</span></h3>
+            <h3>STOP @ <span>{{ item.tip_stop }}</span></h3>
+          </div>
+          <div class="block_2_2">
+            <h3 *ngIf="item.tp1 != '' && item.tp1 > 0">TP 1 <span>{{ item.tp1 }}</span></h3>
+            <h3 *ngIf="item.tp2 != '' && item.tp2 > 0">TP 2 <span>{{ item.tp2 }}</span></h3>
+            <h3 *ngIf="item.tp3 != '' && item.tp3 > 0">TP 3 <span>{{ item.tp3 }}</span></h3>
+            <h3 *ngIf="item.tp4 != '' && item.tp4 > 0">TP 4 <span>{{ item.tp4 }}</span></h3>
+          </div>
+        </div>
+
+        <div>
+          <p class="date_style">Posted on: {{ item.modified }}</p>
+        </div>
+      </div>
+      </ion-card>
+    </ion-item>
+    <div class="thred_outer">
+      <div *ngIf="item" class="thread_section">
+        <ion-card *ngFor="let thread of item.tip_thread">
+          <div>
+            <h4>{{ thread.title }}</h4>
+          </div>
+          <p class="date_style">{{ thread.created }}</p>
+        </ion-card>
+      </div>
+    </div>
+</ion-content>

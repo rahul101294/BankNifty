@@ -1,0 +1,78 @@
+<!--
+  Generated template for the TipCheckoutPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+        <div class="home_title_logo">
+          <img src="assets/imgs/logo.png" width="45px" style="display:inline-block" height="45px" />
+        </div>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <p>Buy Tip</p>
+  <ion-list *ngIf="tip">
+    <ion-item>
+      <ion-card>
+        <div class="image_block">
+          <img src="assets/images/graph.png" class="graph"  slot="start"/>
+        </div>
+        <div class="content_block">
+          <div class="block_1">
+              <div>
+                <span *ngIf="tip.price > 0" class="paid_tips">ADD-ONS</span>
+                <p>
+                  {{ tip.tip_keyword }} <span>{{ tip.tags }}</span>
+                </p>
+              </div>
+              <p>
+                <span>
+                  <img *ngIf="tip.buy_sell == 'Buy'" src="assets/images/up.png" class="up_img"/>
+                  <img *ngIf="tip.buy_sell == 'Sell'" src="assets/imgs/ic_down.png" class="up_img"/>
+                  {{ tip.tip_title }}
+                </span>
+              </p>
+          </div>
+          <div class="block_2">
+            <div class="block_2_1">
+              <h3 *ngIf="tip.buy_sell == 'Buy'">BUY @ <span>{{ tip.tip_buy }}</span></h3>
+              <h3 *ngIf="tip.buy_sell == 'Sell'">SELL @ <span>{{ tip.tip_buy }}</span></h3>
+              <h3>STOP @ <span>{{ tip.tip_stop }}</span></h3>
+            </div>
+            <div class="block_2_2">
+                <h3 *ngIf="tip.tp1 != '' && tip.tp1 > 0">TP 1 <span>{{ tip.tp1 }}</span></h3>
+                <h3 *ngIf="tip.tp2 != '' && tip.tp2 > 0">TP 2 <span>{{ tip.tp2 }}</span></h3>
+                <h3 *ngIf="tip.tp3 != '' && tip.tp3 > 0">TP 3 <span>{{ tip.tp3 }}</span></h3>
+                <h3 *ngIf="tip.tp4 != '' && tip.tp4 > 0">TP 4 <span>{{ tip.tp4 }}</span></h3>
+            </div>
+          </div>
+          <div class="block_3">
+            <span class="planhelp"><img src="assets/imgs/planhelp.png" /></span>
+              <p class="modified date_style">Updated on: {{ tip.modified }}</p>
+              <span class="tip_price">{{currency}} {{tip.price}}</span>
+          </div>
+        </div>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+
+  <div>
+    <h2>Total: <span>{{currency}} {{ tip.price }}</span></h2>
+  </div>
+
+  <ion-list radio-group [(ngModel)]="paymentType">
+    <ion-item>
+      <ion-label>HNI CALLS Wallet {{currency}} {{totalAvailableAmount}}</ion-label>
+      <ion-radio slot="start" value="3" name="paymentType" color="primary" (click)="checkPayment(3)"></ion-radio>
+    </ion-item>
+  </ion-list>
+  <p *ngIf="totalAvailableAmount < tip.price" class="insufficient_amount">Insufficient balance in wallet.</p>
+  <button *ngIf="totalAvailableAmount >= tip.price" ion-button block type="button" [disabled]="!payment_type" (click)="pay()">Proceed To Pay</button>
+
+  <button ion-button block (click)="goToWallet()" class="btnWallet">Add amount in wallet</button>
+</ion-content>

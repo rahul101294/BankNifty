@@ -1,0 +1,332 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <div class="home_title_logo">
+        <img src="assets/imgs/logo.png" width="45px" style="display:inline-block" height="45px" />
+      </div>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <ion-slides pager="true" *ngIf="slider">
+      <ion-slide *ngFor="let slide of slider">
+        <img src="{{ slide}}">
+      </ion-slide>
+    </ion-slides>
+
+    <!-- Default Segment -->
+    <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="selecteSegment">
+      <ion-segment-button value="all">
+        <ion-label>All</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="monthly_tips">
+       <ion-label>Monthly Tips</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="add_ons">
+        <ion-label>Add-Ons</ion-label>
+       </ion-segment-button>
+       <ion-segment-button value="services">
+        <ion-label>Services</ion-label>
+       </ion-segment-button>
+    </ion-segment>
+
+    <ion-list *ngIf="data && selecteSegment == 'all'">
+      <ion-item *ngFor="let item of data">
+        <ion-card *ngIf="item.tip_type == 1 || item.tip_type == 2">
+          <div class="image_block">
+            <img src="assets/images/graph.png" class="graph"  slot="start"/>
+          </div>
+          <div class="content_block">
+            <div class="block_1">
+                <div *ngIf="item.tip_type == 1">
+                  <span *ngIf="item.price > 0 && item.tip_close == 0" class="single">Add-ons</span>
+                  <span *ngIf="item.price > 0 && item.tip_close == 1" class="single_expired">Expired</span>
+                  <span *ngIf="item.price < 1" class="free_tips">Free</span>
+                  <p>
+                    {{ item.keyword }} <span>{{ item.tip_tags }}</span>  <!--<span>+{{ item.percentage_growth }}%</span>-->
+                    <ion-icon (click)="share(item)" name="share-alt"></ion-icon>
+                  </p>
+                </div>
+
+                <div *ngIf="item.tip_type == 2">
+                  <span *ngIf="item.price_1month > 0" class="paid_tips">Paid</span>
+                  <span *ngIf="item.price_1month < 1" class="free_tips">Free</span>
+                  <p>
+                    {{ item.plan_name }} <span>{{ item.cat_name }}</span> <!--<span>+{{ item.percentage_growth }}%</span>-->
+                    <ion-icon (click)="share(item)" name="share-alt"></ion-icon>
+                  </p>
+                </div>
+
+                <p>
+                  <span>
+                    <img *ngIf="item.buy_sell == 'Buy'" src="assets/images/up.png" class="up_img"/>
+                    <img *ngIf="item.buy_sell == 'Sell'" src="assets/imgs/ic_down.png" class="up_img"/>
+                    {{ item.tip_title }}
+                  </span>
+                  <span *ngIf="item.tip_type == 2">{{ item.keyword }}</span>
+                </p>
+            </div>
+            <div class="block_2">
+              <div class="block_2_1">
+                <h3 *ngIf="item.buy_sell == 'Buy'">BUY @ <span>{{ item.buy }}</span></h3>
+                <h3 *ngIf="item.buy_sell == 'Sell'">SELL @ <span>{{ item.buy }}</span></h3>
+                <h3>STOP @ <span>{{ item.stop }}</span></h3>
+              </div>
+              <div class="block_2_2">
+                  <h3 *ngIf="item.tp1 != '' && item.tp1 > 0">TP 1 <span>{{ item.tp1 }}</span></h3>
+                  <h3 *ngIf="item.tp2 != '' && item.tp2 > 0">TP 2 <span>{{ item.tp2 }}</span></h3>
+                  <h3 *ngIf="item.tp3 != '' && item.tp3 > 0">TP 3 <span>{{ item.tp3 }}</span></h3>
+                  <h3 *ngIf="item.tp4 != '' && item.tp4 > 0">TP 4 <span>{{ item.tp4 }}</span></h3>
+              </div>
+            </div>
+            <div class="block_3" *ngIf="item.tip_type == 1">
+            	<span class="planhelp"><img src="assets/imgs/planhelp.png" /></span>
+                <p class="modified date_style">Posted on: {{ item.modified }}</p>
+                <button *ngIf="item.subscribed == 'no' && item.price >= 1 && item.tip_close == 0" ion-button color="primary" size="small" (click)="goToBuyTip(item)">Buy Now {{ currency }}{{item.price}}</button>
+                <button *ngIf="item.subscribed == 'yes' || item.price < 1 || item.tip_close == 1" ion-button color="light" size="small" (click)="goToTipDetail(item.tip_id)">View</button>
+            </div>
+
+            <div class="block_3" *ngIf="item.tip_type == 2">
+            	<span class="planhelp"><img src="assets/imgs/planhelp.png" /></span>
+                <p class="modified date_style">Posted on: {{ item.modified }}</p>
+                <button *ngIf="item.subscribed == 'no' && item.price_1month >= 1" ion-button color="primary" size="small" (click)="goToBuySubscribe(item.plan_id, 'price_1month', item)">Subscribe {{ currency }}{{item.price_1month}}/Month</button>
+                <button *ngIf="item.subscribed == 'yes' || item.price_1month < 1" ion-button color="light" size="small" (click)="goToTipDetail(item.tip_id)">View</button>
+            </div>
+          </div>
+        </ion-card>
+
+        <div *ngIf="!item.tip_type">
+          <span class="leftlabel">{{item.label}}</span>
+          <span class="rightlabel" *ngIf="item.purchased">Purchased</span>
+          <ion-card (click)="goToServiceDetail(item)" class="service_section">
+            <div class="slider_outer">
+              <ion-slides pager="true" *ngIf="item.image">
+                <ion-slide *ngFor="let slideService of item.image" class="service_slide">
+                  <img src="{{ slideService}}">
+                </ion-slide>
+              </ion-slides>
+
+              <div class="rating_price_outer">
+                <div class="rating_block">
+                  <span>Rating</span> 
+                  <div class="rating_image">
+                    <img src="assets/imgs/{{item.avgrating}}.png" class="graph"  slot="start"/>
+                  </div>
+                  <span>({{item.avgrating}})</span>
+                </div>
+  
+                <div class="cart_purchased">
+                  <p class="totalPurchased_new"><ion-icon name="cart"></ion-icon> <span class="sold">SOLD</span> <span>({{item.totalPurchased}})</span></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="service_block_main">
+              <div class="block_1_title">
+                {{item.title}}
+              </div>
+  
+              <div class="block_1_price">
+                {{currency}} {{item.price}}
+              </div>
+            </div>
+          </ion-card>
+        </div>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngIf="data && selecteSegment == 'monthly_tips'">
+      <ion-item *ngFor="let item of data">
+        <ion-card>
+          <div class="image_block">
+            <img src="assets/images/graph.png" class="graph"  slot="start"/>
+          </div>
+          <div class="content_block">
+            <div class="block_1">
+                <div *ngIf="item.tip_type == 2">
+                  <span *ngIf="item.price_1month > 0" class="paid_tips">Paid</span>
+                  <span *ngIf="item.price_1month < 1" class="free_tips">Free</span>
+                  <p>
+                    {{ item.plan_name }} <span>{{ item.cat_name }}</span> <!--<span>+{{ item.percentage_growth }}%</span>-->
+                    <ion-icon (click)="share(item)" name="share-alt"></ion-icon>
+                  </p>
+                </div>
+
+                <p>
+                  <span>
+                    <img *ngIf="item.buy_sell == 'Buy'" src="assets/images/up.png" class="up_img"/>
+                    <img *ngIf="item.buy_sell == 'Sell'" src="assets/imgs/ic_down.png" class="up_img"/>
+                    {{ item.tip_title }}
+                  </span>
+                  <span *ngIf="item.tip_type == 2">{{ item.keyword }}</span>
+                </p>
+            </div>
+            <div class="block_2">
+              <div class="block_2_1">
+                <h3 *ngIf="item.buy_sell == 'Buy'">BUY @ <span>{{ item.buy }}</span></h3>
+                <h3 *ngIf="item.buy_sell == 'Sell'">SELL @ <span>{{ item.buy }}</span></h3>
+                <h3>STOP @ <span>{{ item.stop }}</span></h3>
+              </div>
+              <div class="block_2_2">
+                  <h3 *ngIf="item.tp1 != '' && item.tp1 > 0">TP 1 <span>{{ item.tp1 }}</span></h3>
+                  <h3 *ngIf="item.tp2 != '' && item.tp2 > 0">TP 2 <span>{{ item.tp2 }}</span></h3>
+                  <h3 *ngIf="item.tp3 != '' && item.tp3 > 0">TP 3 <span>{{ item.tp3 }}</span></h3>
+                  <h3 *ngIf="item.tp4 != '' && item.tp4 > 0">TP 4 <span>{{ item.tp4 }}</span></h3>
+              </div>
+            </div>
+
+            <div class="block_3" *ngIf="item.tip_type == 2">
+            	<span class="planhelp"><img src="assets/imgs/planhelp.png" /></span>
+                <p class="modified date_style">Posted on: {{ item.modified }}</p>
+                <button *ngIf="item.subscribed == 'no' && item.price_1month >= 1" ion-button color="primary" size="small" (click)="goToBuySubscribe(item.plan_id, 'price_1month', item)">Subscribe {{ currency }}{{item.price_1month}}/Month</button>
+                <button *ngIf="item.subscribed == 'yes' || item.price_1month < 1" ion-button color="light" size="small" (click)="goToTipDetail(item.tip_id)">View</button>
+            </div>
+          </div>
+        </ion-card>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngIf="data && selecteSegment == 'add_ons'">
+      <ion-item *ngFor="let item of data">
+        <ion-card>
+          <div class="image_block">
+            <img src="assets/images/graph.png" class="graph"  slot="start"/>
+          </div>
+          <div class="content_block">
+            <div class="block_1">
+                <div *ngIf="item.tip_type == 1">
+                  <span *ngIf="item.price > 0 && item.tip_close == 0" class="single">Add-ons</span>
+                  <span *ngIf="item.price > 0 && item.tip_close == 1" class="single_expired">Expired</span>
+                  <span *ngIf="item.price < 1" class="free_tips">Free</span>
+                  <p>
+                    {{ item.keyword }} <span>{{ item.tip_tags }}</span>  <!--<span>+{{ item.percentage_growth }}%</span>-->
+                    <ion-icon (click)="share(item)" name="share-alt"></ion-icon>
+                  </p>
+                </div>
+
+                <p>
+                  <span>
+                    <img *ngIf="item.buy_sell == 'Buy'" src="assets/images/up.png" class="up_img"/>
+                    <img *ngIf="item.buy_sell == 'Sell'" src="assets/imgs/ic_down.png" class="up_img"/>
+                    {{ item.tip_title }}
+                  </span>
+                </p>
+            </div>
+            <div class="block_2">
+              <div class="block_2_1">
+                <h3 *ngIf="item.buy_sell == 'Buy'">BUY @ <span>{{ item.buy }}</span></h3>
+                <h3 *ngIf="item.buy_sell == 'Sell'">SELL @ <span>{{ item.buy }}</span></h3>
+                <h3>STOP @ <span>{{ item.stop }}</span></h3>
+              </div>
+              <div class="block_2_2">
+                  <h3 *ngIf="item.tp1 != '' && item.tp1 > 0">TP 1 <span>{{ item.tp1 }}</span></h3>
+                  <h3 *ngIf="item.tp2 != '' && item.tp2 > 0">TP 2 <span>{{ item.tp2 }}</span></h3>
+                  <h3 *ngIf="item.tp3 != '' && item.tp3 > 0">TP 3 <span>{{ item.tp3 }}</span></h3>
+                  <h3 *ngIf="item.tp4 != '' && item.tp4 > 0">TP 4 <span>{{ item.tp4 }}</span></h3>
+              </div>
+            </div>
+            <div class="block_3" *ngIf="item.tip_type == 1">
+            	<span class="planhelp"><img src="assets/imgs/planhelp.png" /></span>
+                <p class="modified date_style">Posted on: {{ item.modified }}</p>
+                <button *ngIf="item.subscribed == 'no' && item.price >= 1 && item.tip_close == 0" ion-button color="primary" size="small" (click)="goToBuyTip(item)">Buy Now {{ currency }}{{item.price}}</button>
+                <button *ngIf="item.subscribed == 'yes' || item.price < 1 || item.tip_close == 1" ion-button color="light" size="small" (click)="goToTipDetail(item.tip_id)">View</button>
+            </div>
+          </div>
+        </ion-card>
+      </ion-item>
+    </ion-list>
+    
+    <ion-list *ngIf="data && selecteSegment == 'services'">
+      <ion-item *ngFor="let item of data">
+        <span class="leftlabel">{{item.label}}</span>
+        <span class="rightlabel" *ngIf="item.purchased">Purchased</span>
+        <ion-card (click)="goToServiceDetail(item)" class="service_section">
+          <div class="slider_outer">
+            <ion-slides pager="true" *ngIf="item.image">
+              <ion-slide *ngFor="let slideService of item.image" class="service_slide">
+                <img src="{{ slideService}}">
+              </ion-slide>
+            </ion-slides>
+
+            <div class="rating_price_outer">
+              <div class="rating_block">
+                <span>Rating</span> 
+                <div class="rating_image">
+                  <img src="assets/imgs/{{item.avgrating}}.png" class="graph"  slot="start"/>
+                </div>
+                <span>({{item.avgrating}})</span>
+              </div>
+
+              <div class="cart_purchased">
+                <p class="totalPurchased_new"><ion-icon name="cart"></ion-icon> <span class="sold">SOLD</span> <span>({{item.totalPurchased}})</span></p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="service_block_main">
+            <div class="block_1_title">
+              {{item.title}}
+            </div>
+
+            <div class="block_1_price">
+              {{currency}} {{item.price}}
+            </div>
+          </div>
+        </ion-card>
+        
+        
+        <div class="slideinfo" style="display: none;">
+          <span>Star</span>
+          <span><ion-icon name="cart-outline"></ion-icon> Total Sold (1045)</span>
+        </div>
+      </ion-item>      
+    </ion-list>
+
+    <div class="how_it_work">
+      <p>How It Works</p>
+      <ion-grid>
+          <ion-row>
+            <ion-col>
+                <img src="assets/images/how_1.png"/>
+                <p>Subscribed to HNI CALLS</p>
+            </ion-col>
+            <ion-icon name="arrow-round-forward"></ion-icon>
+            <ion-col>
+                <img src="assets/images/how_2.png"/>
+                <p>Get Daily Market Tips</p>
+            </ion-col>
+            <ion-icon name="arrow-round-forward"></ion-icon>
+            <ion-col>
+                <img src="assets/images/how_3.png"/>
+                <p>Boost Your Earning & Wealth</p>
+            </ion-col>
+          </ion-row>
+      </ion-grid>
+    </div>
+
+    <button ion-button color="primary" (click)="goToSubscriptionPlan()">All Plans</button>
+
+    <ion-infinite-scroll *ngIf="!noMorePageAllTab && selecteSegment == 'all'" (ionInfinite)="allTabData($event)" distance="1%">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+    <ion-infinite-scroll *ngIf="!noMorePageMonthlyTipsTab && selecteSegment == 'monthly_tips'" (ionInfinite)="monthlyTipsTabData($event)" distance="1%">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+    <ion-infinite-scroll *ngIf="!noMorePageAddOnsTab && selecteSegment == 'add_ons'" (ionInfinite)="addOnsTabData($event)" distance="1%">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+    <ion-infinite-scroll *ngIf="!noMorePageServiceTab && selecteSegment == 'services'" (ionInfinite)="servicesTabData($event)" distance="1%">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>

@@ -1,0 +1,21 @@
+page-service-content {
+    ion-card {
+        padding: 10px;
+        margin: 0 !important;
+        width: 100% !important;
+        margin-top: 15px !important;
+    }
+
+    .scroll-content {
+        padding: 10px !important;
+    }
+
+    .date {
+        float: right;
+        opacity: 0.8;
+    }
+
+    .nodata {
+        text-align: center;
+    }
+}

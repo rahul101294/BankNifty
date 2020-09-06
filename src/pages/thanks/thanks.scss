@@ -1,0 +1,30 @@
+page-thanks {
+	.scroll-content {
+		padding: 0px 0px !important;
+	}
+	.scroll-content > p {
+		padding: 6px 10px;
+		text-align: left;
+		margin: 10px 10px;
+	}
+	.scroll-content > p span {
+		float: right;
+	}
+	h3 {
+		margin: 10px 10px !important;
+		padding: 124px 10px 20px 10px;
+        background: #f0f0f0 url(../assets/imgs/thanksbg.png) no-repeat center 14px;
+		text-align: center;
+		border-bottom: solid 1px #dedede;
+	}
+
+	.naviga {
+		margin: 10px 10px !important;
+		.home {
+			float: left;
+		}
+		.my_tips {
+			float: right;
+		}
+	}
+}

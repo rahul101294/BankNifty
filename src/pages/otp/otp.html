@@ -1,0 +1,53 @@
+<!--
+  Generated template for the OtpPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-content padding>
+    <div class="logo_sec">
+        <img src="assets/imgs/logo.png">
+    </div>
+
+    <div class="outer-p">
+        <form (submit)="doVerifyOtp()" [formGroup]="form">
+          <div class="py page_title">
+              <h4>Enter Code</h4>
+              <p>We have sent you an SMS on</p>
+              <p>mobile number with a 6-digit</p>
+              <p>Verification code (OTP)</p>
+          </div>        
+            
+          <div class="py">
+              <table class="otpblock">
+                  <tr>
+                      <td>
+                          <ion-input [(ngModel)]="data.otp1" name="otp1" formControlName="otp1" type="tel" maxlength="1" #otp1 (keyup)="next(otp2)"></ion-input>
+                      </td>
+                      <td>
+                          <ion-input [(ngModel)]="data.otp2" name="otp2" formControlName="otp2" type="tel" maxlength="1" #otp2 (keyup)="next(otp3)"></ion-input>
+                      </td>
+                      <td>
+                          <ion-input [(ngModel)]="data.otp3" name="otp3" formControlName="otp3" type="tel" maxlength="1" #otp3 (keyup)="next(otp4)"></ion-input>
+                      </td>
+                      <td>
+                          <ion-input [(ngModel)]="data.otp4" name="otp4" formControlName="otp4" type="tel" maxlength="1" #otp4 (keyup)="next(otp5)"></ion-input>
+                      </td>
+                      <td>
+                          <ion-input [(ngModel)]="data.otp5" name="otp5" formControlName="otp5" type="tel" maxlength="1" #otp5 (keyup)="next(otp6)"></ion-input>
+                      </td>
+                      <td>
+                          <ion-input [(ngModel)]="data.otp6" name="otp6" formControlName="otp6" type="tel" maxlength="1" #otp6></ion-input>
+                      </td>
+                  </tr>
+              </table>
+          </div>
+
+          <div class="btn_outer">
+              <button ion-button block type="submit" margin-top [disabled]="!form.valid">Verify</button>
+          </div>
+          
+      </form>        
+      <a (click)="resendOtp()" class="resend">Resend</a>
+    </div>  
+</ion-content>
